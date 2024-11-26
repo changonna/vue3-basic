@@ -15,6 +15,7 @@ module.exports = {
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-unused-vars': 'warn',
-		'prettier/prettier': 'error',
+		'prettier/prettier': 'off',
+		'vue/no-undef-properties': 'error',
 	},
 };
