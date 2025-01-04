@@ -1,20 +1,22 @@
 <template>
-	<div>asd</div>
+	<div>
+		<TheNav></TheNav>
+		<TheView></TheView>
+	</div>
 </template>
-<script>
-import { ref, watch } from 'vue';
-export default {
-	setup() {
-		const message = ref('');
 
-		watch(message, (newValue, oldValue) => {
-			console.log('newValue: ' + newValue);
-			console.log('oldValue: ' + oldValue);
-		});
-		return {
-			message,
-		};
+<script>
+import TheNav from './components/TheNav.vue';
+import TheView from './components/TheView.vue';
+export default {
+	components: {
+		TheNav,
+		TheView,
+	},
+	setup() {
+		return {};
 	},
 };
 </script>
+
 <style lang="scss" scoped></style>
