@@ -1,6 +1,8 @@
 <template>
 	<main>
 		<div class="container py-4">
+			<PostCreate @createPost="createPost" />
+			<hr class="my-4" />
 			<div class="row g-3">
 				<div v-for="post in posts" :key="post.id" class="col col-4">
 					<AppCard
@@ -12,16 +14,34 @@
 					/>
 				</div>
 			</div>
+			<hr class="my-4" />
+			<!--
+				modelValue
+				update:modelValue
+			-->
+			<!-- :model-value="username"
+				@update:model-value="value => (username = value)" -->
+			<LabelInput v-model="username" label="이름" />
+			<LabelTitle v-model:title="username" label="제목" />
+			<UserName v-model:firstname="firstname" v-model:lastname="lastname" />
 		</div>
 	</main>
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import AppCard from './AppCard.vue';
+import PostCreate from './PostCreate.vue';
+import LabelInput from './LabelInput.vue';
+import LabelTitle from './LabelTitle.vue';
+import UserName from './UserName.vue';
 export default {
 	components: {
 		AppCard,
+		PostCreate,
+		LabelInput,
+		LabelTitle,
+		UserName,
 	},
 	setup() {
 		const post = reactive({
@@ -72,7 +92,15 @@ export default {
 				type: 'notice',
 			},
 		]);
-		return { post, posts };
+		const createPost = newPost => {
+			console.log('createPost');
+			console.log(newPost);
+			posts.push(newPost);
+		};
+		const username = ref('');
+		const firstname = ref('');
+		const lastname = ref('');
+		return { post, posts, createPost, username, firstname, lastname };
 	},
 };
 </script>
