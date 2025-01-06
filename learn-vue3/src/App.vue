@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
 import TheNav from './components/TheNav.vue';
 import TheView from './components/TheView.vue';
 export default {
