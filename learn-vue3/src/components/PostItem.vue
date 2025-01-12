@@ -14,48 +14,44 @@
 </template>
 
 <script>
+console.log('Normal Script');
+</script>
+<script setup>
 import { computed } from 'vue';
-
-export default {
-	props: {
-		type: {
-			type: String,
-			default: 'news',
-			validator: value => {
-				return ['news', 'notice'].includes(value);
-			},
-		},
-		title: {
-			type: String,
-			required: true,
-		},
-		contents: {
-			type: String,
-			// required: true,
-		},
-		isLike: {
-			type: Boolean,
-			default: false,
-		},
-		obj: {
-			type: Object,
-			default: () => ({}),
+console.log('Script Setup');
+const props = defineProps({
+	type: {
+		type: String,
+		default: 'news',
+		validator: value => {
+			return ['news', 'notice'].includes(value);
 		},
 	},
-	emits: ['toggleLike'],
-	setup(props, context) {
-		const typeName = computed(() =>
-			props.type === 'news' ? '뉴스' : '공지사항',
-		);
-		const isLikeClass = computed(() =>
-			props.isLike ? 'btn-danger' : 'btn-outline-danger',
-		);
-		const toggleLike = () => {
-			context.emit('toggleLike');
-		};
-
-		return { typeName, isLikeClass, toggleLike };
+	title: {
+		type: String,
+		required: true,
 	},
+	contents: {
+		type: String,
+		// required: true,
+	},
+	isLike: {
+		type: Boolean,
+		default: false,
+	},
+	obj: {
+		type: Object,
+		default: () => ({}),
+	},
+});
+const emit = defineEmits(['toggleLike']);
+
+const typeName = computed(() => (props.type === 'news' ? '뉴스' : '공지사항'));
+const isLikeClass = computed(() =>
+	props.isLike ? 'btn-danger' : 'btn-outline-danger',
+);
+const toggleLike = () => {
+	emit('toggleLike');
 };
 </script>
 

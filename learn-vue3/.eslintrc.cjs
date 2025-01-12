@@ -18,4 +18,8 @@ module.exports = {
 		'prettier/prettier': 'off',
 		'vue/no-undef-properties': 'error',
 	},
+	parserOptions: {
+		ecmaVersion: 'latest',
+		sourceType: 'module',
+	},
 };
